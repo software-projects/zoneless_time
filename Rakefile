@@ -21,3 +21,16 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = 'zoneless_time'
+    gem.summary = 'TimeWithoutZone support for ActiveRecord'
+    gem.files = Dir["{lib}/**/*"]
+    gem.authors = ['Shaun Mangelsdorf']
+    gem.version = '0.1'
+  end
+rescue LoadError
+  puts "Jeweler could not be sourced"
+end
