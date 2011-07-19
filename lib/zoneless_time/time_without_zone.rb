@@ -5,7 +5,7 @@ module ZonelessTime
     RFC2822_DAY_NAME = Time::RFC2822_DAY_NAME
     RFC2822_MONTH_NAME = Time::RFC2822_MONTH_NAME
 
-    def initialize(year,month,day,hour,min,sec,usec)
+    def initialize(year,month,day,hour,min,sec,usec=0)
       @date = Date.new(year,month,day)
       @hour = hour
       @min = min
@@ -39,7 +39,7 @@ module ZonelessTime
     end
 
     def matches?(other)
-     [:year, :month, :day, :hour, :min, :sec, :usec].all? { |sym| other.send(sym) == self.send(sym) }
+     [:year, :month, :day, :hour, :min, :sec].all? { |sym| other.send(sym) == self.send(sym) }
     end
 
     def time
@@ -70,7 +70,9 @@ module ZonelessTime
 
       private
       def from_time(time)
-        new time.year, time.month, time.day, time.hour, time.min, time.sec, time.usec
+        args = [time.year, time.month, time.day, time.hour, time.min, time.sec]
+        args << time.usec if time.respond_to? :usec
+        new *args
       end
     end
   end
