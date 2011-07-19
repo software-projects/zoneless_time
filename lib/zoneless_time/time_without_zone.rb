@@ -61,7 +61,9 @@ module ZonelessTime
 
     class <<self
       def at(time)
-        if time.respond_to? :acts_like_time? and time.acts_like_time?
+        if time.is_a? self
+          time
+        elsif time.acts_like? :time
           from_time time
         else
           from_time Time.at(time)
