@@ -2,7 +2,7 @@ module ZonelessTime
   module EqualityWithZonelessTime
     def ==(other)
       if other.is_a? self.class
-        self.class.at(self).matches? other
+        ZonelessTime::TimeWithoutZone.at(self).matches? other
       else
         super(other)
       end
