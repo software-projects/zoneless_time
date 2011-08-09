@@ -26,7 +26,8 @@ module ZonelessTime
     end
 
     def -(amount)
-      (to_time - amount).without_zone
+      result = to_time - amount
+      (result.is_a? Time) ? result.without_zone : result
     end
 
     def initialize(year,month,day,hour,min,sec,usec=0)
@@ -64,6 +65,10 @@ module ZonelessTime
 
     def to_i
       to_time.to_i
+    end
+
+    def without_zone
+      dup
     end
 
     def in_time_zone(*args)
