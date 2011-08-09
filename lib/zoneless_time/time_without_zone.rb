@@ -5,6 +5,30 @@ module ZonelessTime
     RFC2822_DAY_NAME = Time::RFC2822_DAY_NAME
     RFC2822_MONTH_NAME = Time::RFC2822_MONTH_NAME
 
+    def xmlschema
+      to_time.xmlschema.gsub(/\+.*\Z/, '')
+    end
+
+    def <=>(other)
+      to_i <=> other.to_i
+    end
+
+    def >(other)
+      to_i > other.to_i
+    end
+
+    def <(other)
+      to_i < other.to_i
+    end
+
+    def +(amount)
+      (to_time + amount).without_zone
+    end
+
+    def -(amount)
+      (to_time - amount).without_zone
+    end
+
     def initialize(year,month,day,hour,min,sec,usec=0)
       @date = Date.new(year,month,day)
       @hour = hour
@@ -38,12 +62,32 @@ module ZonelessTime
       to_s
     end
 
+    def to_i
+      to_time.to_i
+    end
+
+    def in_time_zone(*args)
+      dup
+    end
+
+    def local
+      dup
+    end
+
+    def strftime(*args)
+      to_time.strftime *args
+    end
+
     def matches?(other)
      [:year, :month, :day, :hour, :min, :sec].all? { |sym| other.send(sym) == self.send(sym) }
     end
 
-    def time
+    def to_time
       Time.local(year, month, day, hour, min, sec, usec)
+    end
+
+    def to_date
+      Date.new(year, month, day)
     end
 
     def ==(other)
