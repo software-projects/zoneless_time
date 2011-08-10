@@ -11,6 +11,7 @@ module ActiveRecord
           else
             super ZonelessTime::TimeWithoutZone.at(val)
           end
+          send sym, true
         end
       end
     end
