@@ -13,10 +13,6 @@ module ActiveRecord
           end
         end
       end
-
-      if time_zone_aware_attributes
-        require 'zoneless_time/warning'
-      end
     end
   end
 end
