@@ -51,6 +51,10 @@ module ZonelessTime
       date.wday
     end
 
+    def seconds_since_midnight
+      ((60 * hour) + min) * 60 + sec
+    end
+
     def to_s(type=nil)
       if type == :db
         "#{year}-#{two_char month}-#{two_char day} #{two_char hour}:#{two_char min}:#{two_char sec}"
