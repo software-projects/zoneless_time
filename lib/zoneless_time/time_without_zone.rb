@@ -26,7 +26,11 @@ module ZonelessTime
     end
 
     def -(amount)
-      result = to_time - amount
+      result = if amount.is_a? Fixnum
+        to_time - amount
+      else
+        to_time - amount.to_time
+      end
       (result.is_a? Time) ? result.without_zone : result
     end
 
