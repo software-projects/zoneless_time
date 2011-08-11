@@ -10,15 +10,15 @@ module ZonelessTime
     end
 
     def <=>(other)
-      to_i <=> other.to_i
+      to_i <=> other.to_time.to_i
     end
 
     def >(other)
-      to_i > other.to_i
+      to_i > other.to_time.to_i
     end
 
     def <(other)
-      to_i < other.to_i
+      to_i < other.to_time.to_i
     end
 
     def +(amount)
