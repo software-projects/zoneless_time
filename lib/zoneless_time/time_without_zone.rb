@@ -83,6 +83,10 @@ module ZonelessTime
       to_time.to_i
     end
 
+    def hash
+      self.class.hash ^ to_i
+    end
+
     def without_zone
       dup
     end
@@ -113,6 +117,10 @@ module ZonelessTime
 
     def ==(other)
       matches? other
+    end
+
+    def eql?(other)
+      self == other
     end
 
     def acts_like?(sym)
