@@ -34,6 +34,14 @@ module ZonelessTime
       (result.is_a? Time) ? result.without_zone : result
     end
 
+    def since(amount)
+      self + amount
+    end
+
+    def until(amount)
+      self - amount
+    end
+
     def initialize(year,month,day,hour,min,sec,usec=0)
       @date = Date.new(year,month,day)
       @hour = hour
