@@ -134,7 +134,9 @@ module ZonelessTime
 
     class <<self
       def at(time)
-        if time.is_a? self
+        if time.nil?
+          nil
+        elsif time.is_a? self
           time
         elsif time.acts_like? :time
           from_time time

@@ -7,7 +7,7 @@ module ZonelessTime
       ActiveSupport::TimeWithZone.send :include, ZonelessTime::TimeExtension::InstanceMethods
       ActiveRecord::Base.send :extend, ActiveRecord::ZonelessTimeSupport
 
-      if config.time_zone_aware_attributes
+      if config.active_record.time_zone_aware_attributes
         require 'zoneless_time/warning'
       end
     end

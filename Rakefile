@@ -29,7 +29,7 @@ begin
     gem.summary = 'TimeWithoutZone support for ActiveRecord'
     gem.files = Dir["{lib}/**/*"]
     gem.authors = ['Shaun Mangelsdorf']
-    gem.version = '0.3.1'
+    gem.version = '0.3.2'
   end
 rescue LoadError
   puts "Jeweler could not be sourced"
